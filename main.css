@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "Formula";
+  src:
+    local("Formula"),
+    url("./assets/fonts/PPFormula-CondensedBlack.otf") format("opentype");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Formula", sans-serif;
+    text-transform: uppercase;
+    color: aqua;
+}
+
+#lienzo {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #2020cc;
+}
+
+header {
+    position: absolute;
+    top: 0; left: 0;
+    padding: 2vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    position: relative;
+    text-align: right;
+    font-size: 4vh;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    font-smooth: always;
+}
+
+footer {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    mix-blend-mode: luminosity;
+}
+
+.subtitle {
+    position: relative;
+    padding: 2vh 0 0 2vh;
+    font-size: 14vh;
+}
+
+#centroLogo {
+    position: absolute;
+    bottom: 5vh;
+    right: 2.2vh;
+    width: 10vh;
+}
