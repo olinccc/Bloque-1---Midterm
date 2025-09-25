@@ -42,7 +42,6 @@ scene.add(rimLight);
 
 //// A) Cargar múltiples texturas.
 
-/// A) Cargar múltiples texturas.
 // 1. "Loading manager".
 const manager = new THREE.LoadingManager();
 
@@ -96,7 +95,6 @@ function createMaterial() {
 
 //// B) Rotación al scrollear.
 
-//// B) Rotación al scrollear.
 // 1. Crear un objeto con la data referente al SCROLL para ocuparla en todos lados.
 var scroll = {
    y: 0,
@@ -121,7 +119,7 @@ function updateMeshRotation() {
 function lerpScrollY() {
      scroll.lerpedY += (scroll.y - scroll.lerpedY) * scroll.cof;
 }
-//// C) Movimiento de cámara con mouse (fricción) aka "Gaze Camera".
+
 //// C) Movimiento de cámara con mouse (fricción) aka "Gaze Camera".
 // 1. Crear un objeto con la data referente al MOUSE para ocuparla en todos lados.
 var mouse = {
@@ -168,6 +166,18 @@ function updateCameraPosition() {
    camera.position.y = -mouse.normalOffset.y * mouse.gazeRange.y;
 }
 
+///////// Interacción al click.
+// Al hacer click en el canvas, animamos el scale del mesh.
+canvas.addEventListener("click", () => {
+   gsap.to(mesh.scale, {
+       x: mesh.scale.x + 0.2,
+       y: mesh.scale.y + 0.2,
+       z: mesh.scale.z + 0.2,
+       duration: 1,
+       ease: "bounce.out" // puedes cambiarlo a ease: "power2.out", etc.
+   });
+});
+
 ///////// FIN DE LA CLASE.
 
 
@@ -179,10 +189,8 @@ function updateCameraPosition() {
 function animate() {
     requestAnimationFrame(animate);
 
-   // mesh.rotation.x -= 0.005;
-     lerpScrollY();
-     updateMeshRotation();
-
+    lerpScrollY();
+    updateMeshRotation();
 
     updateCameraPosition();
     camera.lookAt(mesh.position);
