@@ -89,3 +89,6 @@ button {
 #pointsButton {
     background-image: url('./assets/texturas/puntos/orbed-plastic_preview.jpg');
 }
+#metalButton {
+    background-image: url('./assets/texturas/metal/metal-plate_preview.jpg');
+}
