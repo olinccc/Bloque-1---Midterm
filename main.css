@@ -14,14 +14,6 @@
     color: aqua;
 }
 
-#lienzo {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #2020cc;
-}
-
 header {
     position: absolute;
     top: 0; left: 0;
@@ -29,6 +21,7 @@ header {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    z-index: 10; /* 👈 header arriba del canvas */
 }
 
 .title {
@@ -45,6 +38,7 @@ footer {
     bottom: 0; left: 0;
     width: 100%;
     mix-blend-mode: luminosity;
+    z-index: 10; /* 👈 footer arriba del canvas */
 }
 
 .subtitle {
@@ -58,4 +52,38 @@ footer {
     bottom: 5vh;
     right: 2.2vh;
     width: 10vh;
+}
+#lienzo {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #2020cc;
+    z-index: -1; /* canvas al fondo de todo */
+}
+
+/* Botones visibles */
+button {
+    width: 60px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 8px;
+    position: relative;
+    z-index: 10; /* 👈 siempre por encima del canvas */
+}
+
+
+.materialSwitch {
+    background-color: orange;
+}
+
+.matrialSwitch {
+    background-color: limegreen;
+}
+
+#bricksButton {
+    background-image: url('./assets/texturas/puntos/orbed-plastic_albedo.png');
 }

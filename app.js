@@ -17,7 +17,8 @@ const camera = new THREE.PerspectiveCamera(45, canvas.width / canvas.height, 0.1
 
 // 3.1 Configurar mesh.
 //const geo = new THREE.TorusKnotGeometry(1, 0.35, 128, 5, 2);
-const geo = new THREE.SphereGeometry(1.5, 128, 128);
+//const geo = new THREE.SphereGeometry(1.5, 128, 128);
+const geo = new THREE.OctahedronGeometry(1.5, 2); // <-- Cambia aquí
 
 const material = new THREE.MeshStandardMaterial({
     color: "#ffffff",
@@ -77,19 +78,19 @@ const tex = {
 var pbrMaterial;
 
 function createMaterial() {
-   pbrMaterial = new THREE.MeshStandardMaterial({
-       map: tex.albedo,
-       aoMap: tex.ao,
-       metalnessMap: tex.metalness,
-       normalMap: tex.normal,
-       roughnessMap: tex.roughness,
-       displacementMap: tex.displacement,
-       displacementScale: 7,
-       side: THREE.FrontSide,
-       // wireframe: true,
-   });
+    pbrMaterial = new THREE.MeshStandardMaterial({
+        map: tex.albedo,
+        aoMap: tex.ao,
+        metalnessMap: tex.metalness,
+        normalMap: tex.normal,
+        roughnessMap: tex.roughness,
+        displacementMap: tex.displacement,
+        displacementScale: 7,
+        side: THREE.FrontSide,
+        // wireframe: true,
+    });
 
-   mesh.material = pbrMaterial;
+    mesh.material = pbrMaterial;
 }
 
 
@@ -157,13 +158,17 @@ function calculateNormalOffset() {
    mouse.normalOffset.x = ( (mouse.x - windowCenter.x) / canvas.width ) * 2;
    mouse.normalOffset.y = ( (mouse.y - windowCenter.y) / canvas.height ) * 2;
 }
+function lerpDistanceToCenter() {
+   mouse.lerpNormalOffset.x += (mouse.normalOffset.x - mouse.lerpNormalOffset.x) * mouse.cof;
+   mouse.lerpNormalOffset.y += (mouse.normalOffset.y - mouse.lerpNormalOffset.y) * mouse.cof;
+}
 
 window.addEventListener("mousemove", updateMouseData);
 
 // 3. Aplicar valor calculado a la posición de la cámara. (en el loop de animación)
 function updateCameraPosition() {
-   camera.position.x = mouse.normalOffset.x * mouse.gazeRange.x;
-   camera.position.y = -mouse.normalOffset.y * mouse.gazeRange.y;
+   camera.position.x = mouse.lerpNormalOffset.x * mouse.gazeRange.x;
+   camera.position.y = -mouse.lerpNormalOffset.y * mouse.gazeRange.y;
 }
 
 ///////// Interacción al click.
@@ -192,6 +197,7 @@ function animate() {
     lerpScrollY();
     updateMeshRotation();
 
+   lerpDistanceToCenter();
     updateCameraPosition();
     camera.lookAt(mesh.position);
 
