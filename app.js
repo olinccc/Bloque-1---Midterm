@@ -18,7 +18,7 @@ const camera = new THREE.PerspectiveCamera(45, canvas.width / canvas.height, 0.1
 // 3.1 Configurar mesh.
 //const geo = new THREE.TorusKnotGeometry(1, 0.35, 128, 5, 2);
 //const geo = new THREE.SphereGeometry(1.5, 128, 128);
-const geo = new THREE.OctahedronGeometry(1.5, 2); // <-- Cambia aquí
+const geo = new THREE.OctahedronGeometry(1.5, 50); // <-- Cambia aquí
 
 const material = new THREE.MeshStandardMaterial({
     color: "#ffffff",
@@ -67,32 +67,57 @@ manager.onError = function (url) {
 const loader = new THREE.TextureLoader(manager);
 
 // 3. Cargamos texturas guardadas en el folder del proyecto.
-const tex = {
-   albedo: loader.load('./assets/texturas/bricks/albedo.png'),
-   ao: loader.load('./assets/texturas/bricks/ao.png'),
-   metalness: loader.load('./assets/texturas/bricks/metallic.png'),
-   normal: loader.load('./assets/texturas/bricks/normal.png'),
-   roughness: loader.load('./assets/texturas/bricks/roughness.png'),
-   displacement: loader.load('./assets/texturas/bricks/displacement.png'),
+const pointsTexture = {
+   albedo: loader.load('./assets/texturas/puntos/albedo.png'),
+   ao: loader.load('./assets/texturas/puntos/ao.png'),
+   metalness: loader.load('./assets/texturas/puntos/metallic.png'),
+   height: loader.load('./assets/texturas/puntos/height.png'),
+   ogl: loader.load('./assets/texturas/puntos/ogl.png'),
+   roughness: loader.load('./assets/texturas/puntos/roughness.png'),
+   displacement: loader.load('./assets/texturas/puntos/height.png'),
 };
-var pbrMaterial;
+var pointsMaterial;
+var metalMaterial;
+
+// 4. Crear material con las texturas cargadas.
 
 function createMaterial() {
-    pbrMaterial = new THREE.MeshStandardMaterial({
-        map: tex.albedo,
-        aoMap: tex.ao,
-        metalnessMap: tex.metalness,
-        normalMap: tex.normal,
-        roughnessMap: tex.roughness,
-        displacementMap: tex.displacement,
-        displacementScale: 7,
+    pointsMaterial = new THREE.MeshStandardMaterial({
+        map: pointsTexture.albedo,
+        aoMap: pointsTexture.ao,
+        //metalnessMap: pointsTexture.metalness,
+        normalMap: pointsTexture.normal,
+        roughnessMap: pointsTexture.roughness,
+        displacementMap: pointsTexture.displacement,
+        displacementScale: 0.7,
         side: THREE.FrontSide,
+        metalness: 0.7,
+         roughness: 0.2,
+         // color: "#ffffff",
         // wireframe: true,
     });
 
-    mesh.material = pbrMaterial;
+    metalMaterial = new THREE.MeshStandardMaterial({
+         map: metalTexture.albedo,
+         aoMap: metalTexture.ao,
+         normalMap: metalTexture.normal,
+         side: THREE.DoubleSide,
+         metalness: 1,
+         roughness: 0.2,
+      });
+    mesh.material = pointsMaterial;
 }
 
+const metalTexture = {
+    albedo: loader.load('./assets/texturas/metal/albedo.png'),
+   ao: loader.load('./assets/texturas/metal/ao.png'),
+   normal: loader.load('./assets/texturas/metal/ogl.png'),
+}
+
+
+function createMetalMaterial() {
+      
+   }
 
 //// B) Rotación al scrollear.
 
