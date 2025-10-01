@@ -50,6 +50,7 @@ footer {
 #centroLogo {
     position: absolute;
     bottom: 5vh;
+    
     right: 2.2vh;
     width: 10vh;
 }
@@ -59,7 +60,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #2020cc;
+    background-color: #ff004c;
     z-index: -1; /* canvas al fondo de todo */
 }
 
