@@ -1,15 +1,15 @@
 @font-face {
-  font-family: "Formula";
+  font-family: "Bitcount Single Ink";
   src:
-    local("Formula"),
-    url("./assets/fonts/PPFormula-CondensedBlack.otf") format("opentype");
+    local("Bitcount Single Ink"),
+    url("./assets/fonts/BitcountSingleInk.ttf") format("truetype");
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Formula", sans-serif;
+    font-family: "Bitcount Single Ink", sans-serif;
     text-transform: uppercase;
     color: aqua;
 }
@@ -50,19 +50,11 @@ footer {
 #centroLogo {
     position: absolute;
     bottom: 5vh;
-    
+
     right: 2.2vh;
     width: 10vh;
 }
-#lienzo {
-    position: fixed;
-    top: 0; 
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #ff004c;
-    z-index: -1; /* canvas al fondo de todo */
-}
+
 
 /* Botones visibles */
 button {
@@ -88,8 +80,18 @@ button {
 }
 
 #pointsButton {
-    background-image: url('./assets/texturas/puntos/orbed-plastic_preview.jpg');
+    background-image: url('./assets/texturas/puntos/preview.jpg');
 }
 #metalButton {
-    background-image: url('./assets/texturas/metal/streaky-metal1_preview.jpg');
+    background-image: url('./assets/texturas/metal/preview.jpg');
+}
+
+#lienzo {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ff004c;
+    z-index: -1; /* canvas al fondo de todo */
 }

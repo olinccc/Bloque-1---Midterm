@@ -10,9 +10,8 @@ canvas.height = window.innerHeight;
 
 // 3. Configurar escena 3D.
 const scene = new THREE.Scene();
-const renderer = new THREE.WebGLRenderer({ canvas: canvas });
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // <-- agrega alpha: true
 renderer.setSize(canvas.width, canvas.height);
-renderer.setClearColor("#0a0c2c");
 const camera = new THREE.PerspectiveCamera(45, canvas.width / canvas.height, 0.1, 1000);
 
 // 3.1 Configurar mesh.
@@ -33,7 +32,7 @@ const frontLight = new THREE.PointLight("#ffffff", 300, 100);
 frontLight.position.set(7, 3, 3);
 scene.add(frontLight);
 
-const rimLight = new THREE.PointLight("#0066ff", 50, 100);
+const rimLight = new THREE.PointLight("#ffd000ff", 300, 100);
 rimLight.position.set(-7, -3, -7);
 scene.add(rimLight);
 
