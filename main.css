@@ -1,23 +1,26 @@
-@font-face {
-  font-family: "Bitcount Single Ink";
-  src:
-    local("Bitcount Single Ink"),
-    url("./assets/fonts/BitcountSingleInk.ttf") format("truetype");
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Bitcount Single Ink", sans-serif;
-    text-transform: uppercase;
-    color: aqua;
+    /* NO pongas font-family aquí */
+}
+
+.title, h1 {
+    font-family: 'Doto', sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+.subtitle, h2 {
+    font-family: 'Monsieur La Doulaise', cursive;
+    color: #919191;
 }
 
 header {
     position: absolute;
     top: 0; left: 0;
-    padding: 2vh;
+    padding: 5vh;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -27,8 +30,8 @@ header {
 .title {
     position: relative;
     text-align: right;
-    font-size: 4vh;
-    font-weight: lighter;
+    font-size: 6vh;
+    font-weight: heavy;
     -webkit-font-smoothing: antialiased;
     font-smooth: always;
 }
@@ -60,11 +63,12 @@ footer {
 button {
     width: 60px;
     height: 60px;
+    padding: 10;
     border: none;
     cursor: pointer;
     margin: 10px;
     border-radius: 8px;
-    position: relative;
+    position: absolute;
     z-index: 10; 
     background-size: cover;
 
@@ -81,9 +85,14 @@ button {
 
 #pointsButton {
     background-image: url('./assets/texturas/puntos/preview.jpg');
+    left: 2vh;
+    top: 18vh;
 }
+
 #metalButton {
     background-image: url('./assets/texturas/metal/preview.jpg');
+    left: 10vh; /* Mueve este botón a la derecha */
+    top: 18vh;
 }
 
 #lienzo {
