@@ -207,6 +207,16 @@ canvas.addEventListener("click", () => {
    });
 });
 
+// Cambia a textura "puntos" al hacer click en el botón correspondiente
+document.getElementById('pointsButton').addEventListener('click', function() {
+    mesh.material = pointsMaterial;
+});
+
+// Cambia a textura "metal" al hacer click en el botón correspondiente
+document.getElementById('metalButton').addEventListener('click', function() {
+    mesh.material = metalMaterial;
+});
+
 ///////// FIN DE LA CLASE.
 
 
@@ -229,3 +239,20 @@ function animate() {
 }
 
 animate();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const instrucciones = document.querySelector('.instrucciones');
+    let faded = false;
+
+    function fadeInstructions() {
+        if (!faded && instrucciones) {
+            instrucciones.style.opacity = '0';
+            faded = true;
+        }
+    }
+
+    window.addEventListener('scroll', fadeInstructions, { once: true });
+    window.addEventListener('wheel', fadeInstructions, { once: true });
+    window.addEventListener('touchmove', fadeInstructions, { once: true });
+    window.addEventListener('keydown', fadeInstructions, { once: true });
+});

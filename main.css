@@ -22,14 +22,11 @@ header {
     top: 0; left: 0;
     padding: 5vh;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    z-index: 10; /* 👈 header arriba del canvas */
+    z-index: 10;
 }
 
 .title {
     position: relative;
-    text-align: right;
     font-size: 6vh;
     font-weight: heavy;
     -webkit-font-smoothing: antialiased;
@@ -63,13 +60,13 @@ footer {
 button {
     width: 60px;
     height: 60px;
-    padding: 10;
+    padding: 10px;
     border: none;
     cursor: pointer;
     margin: 10px;
     border-radius: 8px;
     position: absolute;
-    z-index: 10; 
+    z-index: 10px; 
     background-size: cover;
 
 }
@@ -91,7 +88,7 @@ button {
 
 #metalButton {
     background-image: url('./assets/texturas/metal/preview.jpg');
-    left: 10vh; /* Mueve este botón a la derecha */
+    left: 13vh; /* Mueve este botón a la derecha */
     top: 18vh;
 }
 
@@ -103,4 +100,37 @@ button {
     height: 100%;
     background-color: #ff004c;
     z-index: -1; /* canvas al fondo de todo */
+}
+
+.instrucciones {
+    font-family: 'Monsieur La Doulaise', cursive;
+    font-size: 4vh;
+    color: #000000;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background: none;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.7s ease;
+    text-align: center;
+}
+
+.derecha {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    top: 5vh;
+    right: 5vh;
+    text-align: right;
+}
+
+.autor {
+    font-size: 5vh;
+    font-weight: heavy;
+    opacity: 0.7;
+    margin-top: 1vh;
 }
