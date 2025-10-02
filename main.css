@@ -38,7 +38,7 @@ footer {
     bottom: 0; left: 0;
     width: 100%;
     mix-blend-mode: luminosity;
-    z-index: 10; /* 👈 footer arriba del canvas */
+    z-index: 10; 
 }
 
 .subtitle {
@@ -88,7 +88,7 @@ button {
 
 #metalButton {
     background-image: url('./assets/texturas/metal/preview.jpg');
-    left: 13vh; /* Mueve este botón a la derecha */
+    left: 13vh;
     top: 18vh;
 }
 
@@ -104,8 +104,8 @@ button {
 
 .instrucciones {
     font-family: 'Monsieur La Doulaise', cursive;
-    font-size: 4vh;
-    color: #000000;
+    font-size: 6vh;
+    color: #919191;
     position: fixed;
     left: 50%;
     top: 50%;
@@ -113,7 +113,7 @@ button {
     z-index: 100;
     background: none;
     pointer-events: none;
-    opacity: 1;
+    opacity: 0.7;
     transition: opacity 0.7s ease;
     text-align: center;
 }
@@ -133,4 +133,36 @@ button {
     font-weight: heavy;
     opacity: 0.7;
     margin-top: 1vh;
+}
+
+.footer-right {
+    position: absolute;
+    right: 20vh; 
+    bottom: 5vh;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.redes-btn {
+    font-family: 'Doto', sans-serif;
+    font-size: 3vh;
+    width: 140px;
+    height: 48px;
+    background: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; 
+}
+
+.redes-btn:hover {
+    background: #d9003c;
 }
