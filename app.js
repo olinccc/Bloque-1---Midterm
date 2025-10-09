@@ -28,12 +28,12 @@ scene.add(mesh);
 mesh.position.z = -7;
 
 // 3.2 Crear luces.
-const frontLight = new THREE.PointLight("#ffffff", 300, 100);
-frontLight.position.set(7, 3, 3);
+const frontLight = new THREE.PointLight("#fff9e0", 50, 50);
+frontLight.position.set(7, 7, 7);
 scene.add(frontLight);
 
-const rimLight = new THREE.PointLight("#ffd000ff", 300, 100);
-rimLight.position.set(-7, -3, -7);
+const rimLight = new THREE.PointLight("#fff9e0", 50, 50);
+rimLight.position.set(-7, -7, -7);
 scene.add(rimLight);
 
 
@@ -65,6 +65,9 @@ manager.onError = function (url) {
 // 2. "Texture loader" para nuestros assets.
 const loader = new THREE.TextureLoader(manager);
 
+// "Cube texture loader" para cargar skyboxes o environment maps.
+const cubeTexLoader = new THREE.CubeTextureLoader(manager);
+
 // 3. Cargamos texturas guardadas en el folder del proyecto.
 const pointsTexture = {
    albedo: loader.load('./assets/texturas/puntos/albedo.png'),
@@ -78,10 +81,19 @@ const pointsTexture = {
 var pointsMaterial;
 var metalMaterial;
 
+const envMap = cubeTexLoader.load([
+   './assets/texturas/mapcubes/Creek/posx.jpg', './assets/texturas/mapcubes/Creek/negx.jpg',   // +X, -X
+   './assets/texturas/mapcubes/Creek/posy.jpg', './assets/texturas/mapcubes/Creek/negy.jpg',   // +Y, -Y
+   './assets/texturas/mapcubes/Creek/posz.jpg', './assets/texturas/mapcubes/Creek/negz.jpg'    // +Z, -Z
+]);
+
+scene.background = envMap;
+
 // 4. Crear material con las texturas cargadas.
 
 function createMaterial() {
     pointsMaterial = new THREE.MeshStandardMaterial({
+        envMap: envMap,
         map: pointsTexture.albedo,
         aoMap: pointsTexture.ao,
         //metalnessMap: pointsTexture.metalness,
@@ -90,19 +102,20 @@ function createMaterial() {
         displacementMap: pointsTexture.displacement,
         displacementScale: 0.7,
         side: THREE.FrontSide,
-        metalness: 0.7,
-         roughness: 0.2,
+        metalness: 0.3,
+         roughness: 0.8,
          // color: "#ffffff",
         // wireframe: true,
     });
 
     metalMaterial = new THREE.MeshStandardMaterial({
+         envMap: envMap,
          map: metalTexture.albedo,
          aoMap: metalTexture.ao,
          normalMap: metalTexture.normal,
          side: THREE.DoubleSide,
-         metalness: 1,
-         roughness: 0.2,
+         metalness: 0.9,
+         roughness: 0.3,
       });
     mesh.material = pointsMaterial;
 }
@@ -255,4 +268,28 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('wheel', fadeInstructions, { once: true });
     window.addEventListener('touchmove', fadeInstructions, { once: true });
     window.addEventListener('keydown', fadeInstructions, { once: true });
+});
+
+function updateCanvasSize() {
+   canvas.width = window.innerWidth;
+   canvas.height = window.innerHeight;
+}
+
+function updateRenderer() {
+   renderer.setSize(canvas.width, canvas.height);
+
+   // actualizar pixel ratio (para pantallas retina, pero limitar a 2 para rendimiento)
+   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+}
+
+function updateCameraAspect() {
+   camera.aspect = canvas.width / canvas.height;
+   camera.updateProjectionMatrix();
+}
+
+ 
+window.addEventListener("resize", function() {
+   updateCanvasSize();
+   updateRenderer();
+   updateCameraAspect();
 });
